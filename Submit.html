@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Successful - Co Create</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            /* Added a fallback background color in case image fails */
+            background-color: #1e3c72;
+        }
+        
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6);
+            min-height: 100vh;
+            width: 100%;
+        }
+        
+        .navbar-custom {
+            padding: 20px 40px;
+        }
+        
+        .logo {
+            width: 180px;
+        }
+        
+        .thank-card {
+            border-radius: 20px;
+            background-color: white;
+            max-width: 450px;
+        }
+        
+        .btn-primary {
+            background-color: #1e3c72;
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background-color: #16325c;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="group.jpg" alt="Background Image" class="bg-image">
+
+    <div class="overlay">
+
+        <div class="navbar-custom">
+            <img src="New Logo.png" alt="Co Create Logo" class="logo">
+        </div>
+
+        <div class="container d-flex justify-content-center align-items-center" style="height: 75vh;">
+            <div class="card thank-card shadow-lg p-5 text-center">
+
+                <h2 class="text-success mb-3">🎉 Registration Successful!</h2>
+
+                <p class="mb-4">
+                    Welcome to <strong>Co Create</strong> 🚀 <br> Your profile has been submitted successfully.
+                </p>
+
+                <a href="login.html" class="btn btn-primary w-100">
+                    Go to Login
+                </a>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
