@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Events | Co-Create</title>
+
+    <!-- 🔥 FAVICON -->
+    <link rel="icon" href="Mera logo.jpg">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('PHTOOOO.avif') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        /* 🔥 NAVBAR */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 30px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .logo img {
+            height: 40px;
+            border-radius: 8px;
+        }
+        
+        .nav-btn {
+            padding: 8px 16px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .nav-btn:hover {
+            background: #2563eb;
+        }
+        
+        h1 {
+            text-align: center;
+            padding: 30px;
+        }
+        
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 20px;
+        }
+        
+        .event-card {
+            width: 280px;
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            transition: 0.3s;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px) scale(1.03);
+        }
+        
+        .deadline {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #facc15;
+        }
+        
+        .apply-btn {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            background: #3b82f6;
+            border: none;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .apply-btn:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🔥 NAVBAR -->
+    <div class="navbar">
+
+        <!-- LOGO (CLICKABLE) -->
+        <a href="main webpage.html" class="logo">
+            <img src="Mera logo.jpg" alt="Logo"> Co-Create
+        </a>
+
+        <!-- BACK BUTTON -->
+        <a href="main webpage.html" class="nav-btn">⬅ Back to Dashboard</a>
+    </div>
+
+    <h1>📅 Explore Events</h1>
+
+    <div class="events-container">
+
+        <!-- EVENTS -->
+
+        <div class="event-card">
+            <h3>DSCI Hackathon</h3>
+            <p>This hackathon is designed as a national collaborative platform, not a competition alone — where trust, resilience, and innovation converge.</p>
+            <div class="deadline">Deadline: 20 May 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3>StartupVerse</h3>
+            <p>This event is for entrepreneurs to pitch their startup ideas and connect with investors.</p>
+            <div class="deadline">Deadline: 10 June 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> Linguathon</h3>
+            <p>This event is for language enthusiasts to showcase their linguistic skills and compete in various challenges.</p>
+            <div class="deadline">Deadline: 5 April 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> Robowar</h3>
+            <p>Robowar is a high-intensity combat robotics competition where teams design, build, and operate remote-controlled robots to battle in a secured arena.</p>
+            <div class="deadline">Deadline: 25 April 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> Bit Blitz</h3>
+            <p>An intensive, often internal event aimed at rapid prototyping, where teams collaborate to develop new business models or products.</p>
+            <div class="deadline">Deadline: 30 April 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3>Tech Sprint</h3>
+            <p> A fast-paced, time-bound event where developers, designers, and innovators work in teams to build functional prototypes or software/hardware solutions to a specific problem statement.</p>
+            <div class="deadline">Deadline: 18 May 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> DSA Contest</h3>
+            <p>A timed competitive programming event, typically 1–2 hours, featuring 3–4 algorithmic problems. Participants write code in languages like C++, Java, or Python to solve problems</p>
+            <div class="deadline">Deadline: 12 April 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> UI/UX Design Jam</h3>
+            <p>Creates intuitive, visually appealing digital products by bridging user needs and business goals. </p>
+            <div class="deadline">Deadline: 28 April 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> Cybersecurity Workshop</h3>
+            <p>Learn ethical hacking basics.</p>
+            <div class="deadline">Deadline: 2 May 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3>Data Science Meetup</h3>
+            <p>Work with real datasets.</p>
+            <div class="deadline">Deadline: 15 May 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> Team Building Event</h3>
+            <p>Collaborate & network.</p>
+            <div class="deadline">Deadline: 22 April 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3>Public Speaking</h3>
+            <p>Improve communication skills.</p>
+            <div class="deadline">Deadline: 8 May 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> Coding Marathon</h3>
+            <p>24-hour coding challenge.</p>
+            <div class="deadline">Deadline: 1 June 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> Research Meetup</h3>
+            <p>Discuss research ideas.</p>
+            <div class="deadline">Deadline: 17 May 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+        <div class="event-card">
+            <h3> Innovation Expo</h3>
+            <p>Showcase your projects.</p>
+            <div class="deadline">Deadline: 25 May 2026</div>
+            <button class="apply-btn">Apply Now</button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
