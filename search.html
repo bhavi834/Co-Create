@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Search Projects</title>
+
+    <link rel="icon" type="image/png" href="New Logo.png">
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background: linear-gradient(rgba(25, 144, 229, 0.5), rgba(85, 243, 138, 0.5)), url('Mera logo.jpg');
+            background: url('Mera logo.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: -1;
+        }
+        
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo {
+            width: 40px;
+            cursor: pointer;
+        }
+        
+        h1 {
+            text-align: center;
+            flex-grow: 1;
+        }
+        
+        .filters {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        input,
+        select {
+            padding: 10px;
+            margin: 5px;
+            width: 22%;
+        }
+        
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        
+        .project {
+            border: 1px solid black;
+            padding: 15px;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .apply-btn {
+            background: green;
+            color: white;
+        }
+        
+        .remove-btn {
+            background: red;
+            color: white;
+        }
+        
+        .close-btn {
+            background: orange;
+            color: white;
+        }
+        
+        .link {
+            color: #0366d6;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <img src="Mera logo.jpg" class="logo" onclick="goHome()">
+        <h1>Search Projects</h1>
+    </div>
+
+    <!-- FILTER BOX -->
+    <div class="filters">
+
+        <input type="text" id="titleFilter" placeholder="Project Title">
+
+        <input type="text" id="skillFilter" placeholder="Skill (Java, C++, MERN)">
+
+        <select id="orgFilter">
+        <option value="">All Organizations</option>
+    </select>
+
+        <select id="qualFilter">
+        <option value="">All Qualifications</option>
+    </select>
+
+        <select id="peopleFilter">
+        <option value="">People Required</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4+</option>
+    </select>
+
+        <select id="modeFilter">
+        <option value="">All Modes</option>
+        <option value="Remote">Remote</option>
+        <option value="Onsite">Onsite</option>
+    </select>
+
+        <button onclick="applyFilters ()">Search</button>
+
+    </div>
+
+    <div id="projects"></div>
+
+    <script>
+        let allProjects = [];
+
+        function loadProjects() {
+            allProjects = JSON.parse(localStorage.getItem("projects")) || [];
+            populateDropdowns();
+            displayProjects(allProjects);
+        }
+
+        function populateDropdowns() {
+            const orgSet = new Set();
+            const qualSet = new Set();
+
+            allProjects.forEach(p => {
+                if (p.college) orgSet.add(p.college);
+                if (p.qualification) qualSet.add(p.qualification);
+            });
+
+            const orgSelect = document.getElementById("orgFilter");
+            const qualSelect = document.getElementById("qualFilter");
+
+            orgSet.forEach(o => {
+                orgSelect.innerHTML += `<option value="${o}">${o}</option>`;
+            });
+
+            qualSet.forEach(q => {
+                qualSelect.innerHTML += `<option value="${q}">${q}</option>`;
+            });
+        }
+
+        function displayProjects(projects) {
+            const container = document.getElementById("projects");
+            container.innerHTML = "";
+
+            if (projects.length === 0) {
+                container.innerHTML = "<p>No projects found</p>";
+                return;
+            }
+
+            projects.forEach((p, index) => {
+                        container.innerHTML += `
+        <div class="project">
+            <h3>Project ${index + 1}: ${p.title}</h3>
+
+            <p><b>Description:</b> ${p.desc}</p>
+            <p><b>Skills:</b> ${p.skills.join(", ")}</p>
+            <p><b>Mode:</b> ${p.mode}</p>
+            <p><b>People Needed:</b> ${p.people}</p>
+
+            <hr>
+
+            <p><b>Created By:</b> ${p.creator}</p>
+            <p><b>Qualification:</b> ${p.qualification}</p>
+            <p><b>Organization:</b> ${p.college}</p>
+            <p><b>Intro:</b> ${p.intro}</p>
+
+            <p><b>GitHub:</b> <a href="${p.github}" target="_blank" class="link">GitHub</a></p>
+            <p><b>LinkedIn:</b> <a href="${p.linkedin}" target="_blank" class="link">LinkedIn</a></p>
+
+            <button class="apply-btn" onclick="applyProject(${index})" ${p.closed ? "disabled" : ""}>
+                ${p.closed ? "Applications Closed" : "Apply"}
+            </button>
+
+            ${!p.closed ? `<button class="close-btn" onclick="closeApplications(${index})">Close</button>` : ""}
+
+            <button class="remove-btn" onclick="removeProject(${index})">Remove</button>
+        </div>
+        `;
+    });
+}
+
+function applyFilters() {
+    const title = document.getElementById("titleFilter").value.toLowerCase();
+    const skill = document.getElementById("skillFilter").value.toLowerCase();
+    const org = document.getElementById("orgFilter").value;
+    const qual = document.getElementById("qualFilter").value;
+    const people = document.getElementById("peopleFilter").value;
+    const mode = document.getElementById("modeFilter").value;
+
+    const filtered = allProjects.filter(p =>
+        p.title.toLowerCase().includes(title) &&
+        p.skills.join(",").toLowerCase().includes(skill) &&
+        (org === "" || p.college === org) &&
+        (qual === "" || p.qualification === qual) &&
+        (mode === "" || p.mode === mode) &&
+        (
+            people === "" ||
+            (people === "4" ? parseInt(p.people) >= 4 : p.people == people)
+        )
+    );
+
+    displayProjects(filtered);
+}
+
+function applyProject(index) {
+    const project = allProjects[index];
+
+    if (project.closed) {
+        alert("Applications closed");
+        return;
+    }
+
+    localStorage.setItem("selectedProject", JSON.stringify(project));
+    window.location.href = "apply.html";
+}
+
+function removeProject(index) {
+    allProjects.splice(index, 1);
+    localStorage.setItem("projects", JSON.stringify(allProjects));
+    loadProjects();
+}
+
+function closeApplications(index) {
+    allProjects[index].closed = true;
+    localStorage.setItem("projects", JSON.stringify(allProjects));
+    loadProjects();
+}
+
+function goHome() {
+    window.location.href = "main webpage.html";
+}
+
+loadProjects();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 🌐 FAVICON -->
+    <link rel="icon" href="Mera logo.jpg" type="image/png">
+    <title>Create Project</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            /* 🔥 Background */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('project image.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        /* 🔥 TOP BAR WITH LOGO */
+        
+        .topbar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .topbar img {
+            height: 40px;
+            border-radius: 8px;
+        }
+        
+        .topbar h2 {
+            color: white;
+            margin: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        /* Glass Container */
+        
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 25px;
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+        }
+        
+        input,
+        textarea {
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        select {
+            background: white;
+        }
+        
+        button {
+            padding: 12px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: #2563eb;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 🔥 LOGO TOP LEFT -->
+    <div class="topbar">
+        <img src="Mera logo.jpg" alt="Logo">
+        <h2>Co-Create</h2>
+    </div>
+
+    <h1>🤝 Create a Project 🤝</h1>
+
+    <div class="container">
+
+        <h2>Creator Details</h2>
+
+        <input id="creator" type="text" placeholder="Your Name">
+        <input id="qualification" type="text" placeholder="Highest Qualification">
+        <input id="stream" type="text" placeholder="Stream / Branch">
+        <input id="college" type="text" placeholder="College / Organization">
+        <input id="contact" type="text" placeholder="Contact Email or Phone">
+
+        <input id="github" type="url" placeholder="GitHub Profile Link">
+        <input id="linkedin" type="url" placeholder="LinkedIn Profile Link">
+
+        <textarea id="intro" placeholder="Brief Introduction"></textarea>
+
+        <h2>Project Details</h2>
+
+        <input id="title" type="text" placeholder="Project Title">
+        <textarea id="desc" placeholder="Project Description"></textarea>
+
+        <input id="tech" type="text" placeholder="Tech Stack">
+
+        <select id="mode">
+            <option value="">Select Mode</option>
+            <option value="Remote">Remote</option>
+            <option value="Onsite">Onsite</option>
+        </select>
+
+        <input id="people" type="number" placeholder="Number of People Required">
+        <input id="skills" type="text" placeholder="Skills Required (comma separated)">
+
+        <button onclick="createProject()">Create Project</button>
+
+    </div>
+
+    <script>
+        function createProject() {
+            const creator = document.getElementById("creator").value;
+            const qualification = document.getElementById("qualification").value;
+            const stream = document.getElementById("stream").value;
+            const college = document.getElementById("college").value;
+            const contact = document.getElementById("contact").value;
+            const github = document.getElementById("github").value;
+            const linkedin = document.getElementById("linkedin").value;
+            const intro = document.getElementById("intro").value;
+
+            const title = document.getElementById("title").value;
+            const desc = document.getElementById("desc").value;
+            const tech = document.getElementById("tech").value;
+            const mode = document.getElementById("mode").value;
+            const people = document.getElementById("people").value;
+            const skills = document.getElementById("skills").value;
+
+            if (!creator || !qualification || !stream || !college || !contact ||
+                !github || !linkedin || !intro ||
+                !title || !desc || !tech || !mode || !people || !skills) {
+                alert("⚠️ Please fill all fields!");
+                return;
+            }
+
+            const project = {
+                creator,
+                qualification,
+                stream,
+                college,
+                contact,
+                github,
+                linkedin,
+                intro,
+                title,
+                desc,
+                tech,
+                mode,
+                people,
+                skills: skills.split(","),
+                closed: false
+            };
+
+            let projects = JSON.parse(localStorage.getItem("projects")) || [];
+            projects.push(project);
+
+            localStorage.setItem("projects", JSON.stringify(projects));
+
+            alert("✅ Project Created Successfully!");
+            window.location.href = "search.html";
+        }
+    </script>
+
+</body>
+
+</html>

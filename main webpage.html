@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Co-Create</title>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, rgba(73, 6, 6, 0.7), rgba(91, 9, 13, 0.7)), url('BG IMAGE.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        /* NAVBAR */
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo img {
+            height: 40px;
+            border-radius: 8px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        /* HERO */
+        
+        .main {
+            text-align: center;
+            color: white;
+            padding: 160px 20px;
+        }
+        
+        .main h1 {
+            font-size: 55px;
+        }
+        
+        .main h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        /* SECTION */
+        
+        .section {
+            margin: 80px 20px;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.7s ease;
+        }
+        
+        .section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        /* CARDS */
+        
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        /* LINK WRAPPER */
+        
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .card {
+            background: white;
+            width: 260px;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            transition: 0.4s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        /* FOOTER */
+        
+        .footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Mera logo.jpg"> Co-Create
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="startproject.html">Start a Project</a></li>
+            <li><a href="search.html">Search Projects</a></li>
+            <li><a href="event.html">Events </a></li>
+            <li><a href="about.html">About   </a></li>
+            <li><a href="Contact us.html">Contact us </a></li>
+
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <div class="main">
+        <h1>नमस्ते भव्य 🙏</h1>
+        <h2>Build. Collaborate. Grow </h2>
+    </div>
+
+    <!-- SECTION -->
+    <div class="section">
+        <h2>What is Co-Create?</h2>
+        <p style="text-align:center;">
+            A platform where developers collaborate, share ideas, and work together on real-world projects. <br>It enables users to find teammates, build innovative solutions, and enhance their practical skills.<br> Co-Create fosters growth by connecting
+            like-minded individuals and turning ideas into reality.
+
+        </p>
+    </div>
+
+    <!-- CARDS -->
+    <div class="section">
+        <h2>💡 Features</h2>
+
+        <div class="cards">
+
+            <!-- CARD 1 -->
+            <a href="startproject.html" class="card-link">
+                <div class="card">
+                    <div class="card-icon">🚀</div>
+                    <h3>Start Projects</h3>
+                    <p>Launch your own ideas.</p>
+                </div>
+            </a>
+
+            <!-- CARD 2 -->
+            <a href="search.html" class="card-link">
+                <div class="card">
+                    <div class="card-icon">🔍</div>
+                    <h3>Find Projects</h3>
+                    <p>Explore and join projects.</p>
+                </div>
+            </a>
+
+            <!-- CARD 3 -->
+            <a href="event.html" class="card-link">
+                <div class="card">
+                    <div class="card-icon">📈</div>
+                    <h3>Grow Skills</h3>
+                    <p>Learn by building real projects.</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        © 2026 Co-Create | Built with ❤️
+    </div>
+
+    <!-- SCROLL ANIMATION -->
+    <script>
+        const sections = document.querySelectorAll('.section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        sections.forEach(section => observer.observe(section));
+
+        window.addEventListener('scroll', () => {
+            document.body.style.backgroundPositionY = window.scrollY * 0.3 + "px";
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Co-Create</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="Mera logo.jpg">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            /* 🔥 Background */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('phtoo group.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        /* 🔥 TOP LOGO */
+        
+        .topbar {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .topbar img {
+            height: 40px;
+            border-radius: 8px;
+        }
+        /* LOGIN CONTAINER */
+        
+        .login-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .login-box {
+            width: 350px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        
+        .login-box h2 {
+            margin-bottom: 20px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #3b82f6;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+        
+        .extra {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .extra a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGO -->
+    <div class="topbar">
+        <img src="Mera logo.jpg" alt="Logo">
+        <h2>Co-Create</h2>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div class="login-container">
+        <div class="login-box">
+            <h2>🔐 Login</h2>
+
+            <!-- 👇 IMPORTANT: email id -->
+            <input type="text" id="email" placeholder="Email">
+
+            <input type="password" id="password" placeholder="Password">
+
+            <button onclick="login()">Login</button>
+
+            <div class="extra">
+                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email === "" || password === "") {
+                alert("⚠️ Please enter all fields!");
+                return;
+            }
+
+            // Get users from localStorage
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Validate user
+            let validUser = users.find(user =>
+                user.email === email && user.password === password
+            );
+
+            if (!validUser) {
+                alert("❌ Invalid Email or Password!");
+                return;
+            }
+
+            // Save session
+            localStorage.setItem("loggedInUser", JSON.stringify(validUser));
+
+            alert("✅ Login Successful!");
+
+            // Redirect
+            window.location.href = "main webpage.html";
+        }
+    </script>
+
+</body>
+
+</html>

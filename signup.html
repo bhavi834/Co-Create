@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up | Co-Create</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="Mera logo.jpg">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            /* 🔥 Background */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('phtoo group.png') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        /* 🔥 TOP LOGO */
+        
+        .topbar {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .topbar img {
+            height: 40px;
+            border-radius: 8px;
+        }
+        /* SIGNUP CONTAINER */
+        
+        .signup-container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .signup-box {
+            width: 350px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        
+        .signup-box h2 {
+            margin-bottom: 20px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background: #3b82f6;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        button:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+        }
+        
+        .extra {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        
+        .extra a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LOGO -->
+    <div class="topbar">
+        <img src="Mera logo.jpg" alt="Logo">
+        <h2>Co-Create</h2>
+    </div>
+
+    <!-- SIGNUP FORM -->
+    <div class="signup-container">
+        <div class="signup-box">
+            <h2>📝 Create Account</h2>
+
+            <input type="text" id="name" placeholder="Full Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+
+            <button onclick="signup()">Sign Up</button>
+
+            <div class="extra">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function signup() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            // Validation
+            if (!name || !email || !password) {
+                alert("⚠️ Please fill all fields!");
+                return;
+            }
+
+            // Get existing users
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Check duplicate
+            let exists = users.find(user => user.email === email);
+
+            if (exists) {
+                alert("❌ Account already exists! Please login.");
+                return;
+            }
+
+            // Save user
+            let newUser = {
+                name,
+                email,
+                password
+            };
+            users.push(newUser);
+
+            localStorage.setItem("users", JSON.stringify(users));
+
+            alert("✅ Account Created Successfully!");
+
+            // Redirect to login
+            window.location.href = "login.html";
+        }
+    </script>
+
+</body>
+
+</html>
